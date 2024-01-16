@@ -1,4 +1,6 @@
 pandas
 numpy
 seaborn
+matplotlib
+plotly
 -e .
