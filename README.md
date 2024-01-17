@@ -1,4 +1,4 @@
-# Student Performance Estimation
+# Student Performance Indicator
 
 ## Problem Statement
 This project aims to estimate student performance (test scores) and analyze how it is influenced by various factors such as Gender, Ethnicity, Parental Level of Education, Lunch, and Test Preparation Course.
