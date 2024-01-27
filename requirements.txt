@@ -5,4 +5,5 @@ matplotlib
 plotly
 catboost
 xgboost
+scikit-learn
 -e .
