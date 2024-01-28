@@ -6,4 +6,6 @@ plotly
 catboost
 xgboost
 scikit-learn
--e .
+dill
+pickle5
+# -e .
