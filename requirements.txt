@@ -7,5 +7,6 @@ catboost
 xgboost
 scikit-learn
 dill
+Flask
 pickle5
 # -e .

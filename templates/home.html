@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Exam Performance Indicator</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 20px;
+        }
+
+        .login {
+            max-width: 400px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            color: #ffffff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        h2 {
+            color: #3498db;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login">
+        <h1>Student Exam Performance Indicator</h1>
+
+        <form action="{{ url_for('predict_datapoint')}}" method="post">
+            <!-- <h1>
+                <legend>Student Exam Performance Prediction</legend>
+            </h1> -->
+            <div class="mb-3">
+                <label class="form-label">Gender</label>
+                <select class="form-control" name="gender" placeholder="Enter your Gender" required>
+                    <option class="placeholder" selected disabled value="">Select your Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Race or Ethnicity</label>
+                <select class="form-control" name="ethnicity" placeholder="Enter your ethnicity" required>
+                    <option class="placeholder" selected disabled value="">Select your ethnicity</option>
+                    <option value="group A">group A</option>
+                    <option value="group B">group B</option>
+                    <option value="group C">group C</option>
+                    <option value="group D">group D</option>
+                    <option value="group E">group E</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Parental Level of Education</label>
+                <select class="form-control" name="parental_level_of_education" placeholder="Enter your Parent Education" required>
+                    <option class="placeholder" selected disabled value="">Select your Parent Education</option>
+                    <option value="bachelor's degree">bachelor's degree</option>
+                    <option value="some college">some college</option>
+                    <option value="master's degree">master's degree</option>
+                    <option value="associate's degree">associate's degree</option>
+                    <option value="high school">high school</option>
+                    <option value="some high school">some high school</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Lunch Type</label>
+                <select class="form-control" name="lunch" placeholder="Enter your Lunch" required>
+                    <option class="placeholder" selected disabled value="">Select your Lunch</option>
+                    <option value="standard">standard</option>
+                    <option value="free/reduced">free/reduced</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Test Preparation Course</label>
+                <select class="form-control" name="test_preparation_course" placeholder="Enter your Course" required>
+                    <option class="placeholder" selected disabled value="">Select your Course</option>
+                    <option value="None">none</option>
+                    <option value="Completed">completed</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Writing Score out of 100</label>
+                <input class="form-control" type="number" name="writing_score" placeholder="Enter your Writing score" min='0' max='100' />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Reading Score out of 100</label>
+                <input class="form-control" type="number" name="reading_score" placeholder="Enter your Reading Score" min='0' max='100' />
+            </div>
+
+            <!-- <div class="mb-3">
+                <label class="form-label">Math Score out of 100</label>
+                <input class="form-control" type="number" name="math_score" placeholder="Enter your Math Score" min='0' max='100' />
+            </div> -->
+
+            <!-- <div class="mb-3">
+                <label class="form-label">Science Score out of 100</label>
+                <input class="form-control" type="number" name="science_score" placeholder="Enter your Science Score" min='0' max='100' />
+            </div> -->
+
+            <div class="mb-3">
+                <input class="btn btn-primary" type="submit" value="Predict your Exam Performance" required />
+            </div>
+        </form>
+
+        <h2>
+            THE prediction is {{results}}
+        </h2>
+    </div>
+
+    <script>
+        // Add interactive behavior with JavaScript
+        document.getElementById('examForm').addEventListener('change', function () {
+            updateSummary();
+        });
+
+        document.getElementById('examForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting for now
+            updateSummary();
+            // Additional logic for form submission can be added here
+        });
+
+        function updateSummary() {
+            var summaryDiv = document.getElementById('summary');
+            var formElements = document.getElementById('examForm').elements;
+            var summaryText = '<strong>Your Selections:</strong><br>';
+
+            for (var i = 0; i < formElements.length; i++) {
+                if (formElements[i].type !== 'submit') {
+                    summaryText += `<span>${formElements[i].name}:</span> ${formElements[i].value}<br>`;
+                }
+            }
+
+            summaryDiv.innerHTML = summaryText;
+        }
+    </script>
+</body>
+
+</html>
